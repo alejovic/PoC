@@ -23,8 +23,8 @@ public class Application {
     @Bean
     public CommandLineRunner run(EmployeeRepository repository){
         return (args -> {
-           // populateEmployee(repository);
-           //System.out.println(repository.findAll());
+           populateEmployee(repository);
+           System.out.println(repository.findAll());
         });
     }
 
