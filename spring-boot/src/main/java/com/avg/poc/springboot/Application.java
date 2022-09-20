@@ -5,32 +5,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
 public class Application {
 
     @Autowired
-    EmployeeRepository repository;// a repository is a service (also).
+    private EmployeeRepository repository;// a repository is a service (also).
 
     @Autowired
-    PropertyPoC propertyPoC;
-
-    @GetMapping("/hello")
-    public String getMessage(){
-
-        return "Hello world spring-boot!! " + repository.findEmployeeByNameContaining("Ale")
-                + "properties -> " + propertyPoC.toString();
-    }
+    private PropertyPoC propertyPoC;
 
     @Bean
-    public CommandLineRunner run(EmployeeRepository repository){
+    public CommandLineRunner run(EmployeeRepository repository) {
         return (args -> {
-           // populateEmployee(repository);
-           System.out.println(repository.findAll());
-           System.out.println(propertyPoC.toString());
+            // populateEmployee(repository);
+            System.out.println(repository.findAll());
+            System.out.println(propertyPoC.toString());
         });
     }
 
