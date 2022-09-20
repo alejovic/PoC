@@ -15,16 +15,22 @@ public class Application {
     @Autowired
     EmployeeRepository repository;// a repository is a service (also).
 
+    @Autowired
+    PropertyPoC propertyPoC;
+
     @GetMapping("/hello")
     public String getMessage(){
-        return "Hello world spring-boot!! " + repository.findEmployeeByNameContaining("Ale");
+
+        return "Hello world spring-boot!! " + repository.findEmployeeByNameContaining("Ale")
+                + "properties -> " + propertyPoC.toString();
     }
 
     @Bean
     public CommandLineRunner run(EmployeeRepository repository){
         return (args -> {
-           populateEmployee(repository);
+           // populateEmployee(repository);
            System.out.println(repository.findAll());
+           System.out.println(propertyPoC.toString());
         });
     }
 
