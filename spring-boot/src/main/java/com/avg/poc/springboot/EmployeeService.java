@@ -9,12 +9,16 @@ public class EmployeeService {
     @Autowired
     EmployeeCrudRepository repository;// a repository is a service (also).
 
+    @Autowired
+    EmployeeEMRepository repositoryWithEM;// a repository with EM
+
     public String showEmployees(){
         return repository.findAll() + "";
     }
 
     public String showEmployeeByName(String name) {
-        return repository.findEmployeeByNameContaining(name).toString();
+        //return repository.findEmployeeByNameContaining(name).toString();
+        return repositoryWithEM.findEmployeeByNameContaining(name).toString();
     }
 
 }
