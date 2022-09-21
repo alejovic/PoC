@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Bean;
 public class Application {
 
     @Autowired
-    private EmployeeRepository repository;// a repository is a service (also).
+    private EmployeeCrudRepository repository;// a repository is a service (also).
 
     @Autowired
     private PropertyPoC propertyPoC;
 
     @Bean
-    public CommandLineRunner run(EmployeeRepository repository) {
+    public CommandLineRunner run(EmployeeCrudRepository repository) {
         return (args -> {
             // populateEmployee(repository);
             System.out.println(repository.findAll());
@@ -24,7 +24,7 @@ public class Application {
         });
     }
 
-    private void populateEmployee(EmployeeRepository repository) {
+    private void populateEmployee(EmployeeCrudRepository repository) {
         repository.save(new Employee("Alejandro"));
         repository.save(new Employee("Maria"));
         repository.save(new Employee("Diego"));

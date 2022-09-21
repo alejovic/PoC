@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class EmployeeService {
 
     @Autowired
-    EmployeeRepository repository;// a repository is a service (also).
+    EmployeeCrudRepository repository;// a repository is a service (also).
 
     public String showEmployees(){
         return repository.findAll() + "";
