@@ -10,16 +10,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepository repository;// a repository is a service (also).
+    EmployeeService service;
 
     @Autowired
     PropertyPoC propertyPoC;
 
     @GetMapping("/hello")
-    public String getMessage(){
-        return "Hello world spring-boot!! " + repository.findEmployeeByNameContaining("Ale")
-                + "properties -> " + propertyPoC.toString();
+    public String getMessage() {
+        return "Hello world spring-boot!! " + "properties -> " + propertyPoC.toString();
     }
 
+    @GetMapping("/show")
+    public String showEmployeeByName() {
+        return service.showEmployeeByName("Ale");
+    }
+
+    @GetMapping("/")
+    public String showEmployees() {
+        return service.showEmployees();
+    }
 
 }
