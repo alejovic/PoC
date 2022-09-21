@@ -1,0 +1,10 @@
+spring-boot-poc:
+  property1: single_property1_yml_PROD
+  property2: single_property2_yml_PROD
+  properties:
+    - property1: array-property-0-property1_yml_PROD
+      property2: array-property-0-property2_yml_PROD
+    - property1: array-property-1-property1_yml_PROD
+      property2: array-property-1-property2_yml_PROD
+  list:
+    properties: yml_prod1;yml_prod2;yml_prod3
