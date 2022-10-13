@@ -4,7 +4,10 @@ import com.avg.poc.quarkus.repositorypattern.Employee;
 import com.avg.poc.quarkus.repositorypattern.EmployeePanacheRepository;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.mockito.InjectMock;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -15,6 +18,9 @@ public class EmployeeRepositoryTest {
 
     @Inject
     EmployeePanacheRepository panacheRepository;
+
+    @InjectMock
+    EmployeePanacheRepository panacheMockRepository;
 
     @Test
     @Transactional
@@ -39,6 +45,14 @@ public class EmployeeRepositoryTest {
         list.stream().forEach(System.out::println);
     }
 
+    @Test
+    public void testPanacheRepositoryMocking() throws Throwable {
+        // Mocked classes always return a default value
+        Assertions.assertEquals(0, panacheMockRepository.count());
 
+        // Now let's specify the return value
+        Mockito.when(panacheMockRepository.count()).thenReturn(23L);
+        Assertions.assertEquals(23, panacheMockRepository.count());
+    }
 
 }

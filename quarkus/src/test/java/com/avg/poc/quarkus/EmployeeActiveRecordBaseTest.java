@@ -3,8 +3,11 @@ package com.avg.poc.quarkus;
 import com.avg.poc.quarkus.activerecordpattern.EmployeeActiveRecordPanacheEntity;
 import com.avg.poc.quarkus.activerecordpattern.EmployeeActiveRecordEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.mock.PanacheMock;
 import io.quarkus.test.junit.QuarkusTest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -39,6 +42,18 @@ public class EmployeeActiveRecordBaseTest {
         EmployeeActiveRecordEntityBase activeRecord = new EmployeeActiveRecordEntityBase();
         List<EmployeeActiveRecordEntityBase> list = activeRecord.findEmployeeByNameContaining("ua");
         list.stream().forEach(System.out::println);
+    }
+
+    @Test
+    public void testPanacheMocking() {
+        PanacheMock.mock(EmployeeActiveRecordEntityBase.class);
+        // Mocked classes always return a default value
+        Assertions.assertEquals(0, EmployeeActiveRecordEntityBase.count());
+
+        // Now let's specify the return value
+        Mockito.when(EmployeeActiveRecordEntityBase.count()).thenReturn(23L);
+        Assertions.assertEquals(23, EmployeeActiveRecordEntityBase.count());
+
     }
 
 }
