@@ -1,6 +1,5 @@
 package com.avg.poc.quarkus;
 
-import com.avg.poc.quarkus.activerecordpattern.EmployeeActiveRecordEntity;
 import com.avg.poc.quarkus.repositorypattern.Employee;
 import com.avg.poc.quarkus.repositorypattern.EmployeePanacheRepository;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
