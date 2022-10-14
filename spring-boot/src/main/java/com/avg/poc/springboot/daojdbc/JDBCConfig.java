@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 public class JDBCConfig {
 
     private final String JDBC_DRIVER_CLASSSNAME = "org.h2.Driver";
-    private final String JDBC_URL = "jdbc:h2:file:./data/db";
+    private final String JDBC_URL = "jdbc:h2:file:./data/daojdbc";
     private final String JDBC_USER = "sa";
     private final String JDBC_PASSWORD = "password";
 
@@ -41,8 +41,8 @@ public class JDBCConfig {
     public DataSource getEmbeddedDataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
-                .addScript("classpath:schema.sql")
-                .addScript("classpath:data.sql").build();
+                .addScript("classpath:db/h2/schema.sql")
+                .addScript("classpath:db/h2/data.sql").build();
     }
 
 }

@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan("com.avg.poc.springboot.jdbctemplate")
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:db/database.properties")
 public class JDBCTemplateConfig {
 
     @Autowired
