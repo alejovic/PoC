@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("DaoJDBCEmployeeDAOImpl")
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     private static final String TABLE = "EMPLOYEES";
