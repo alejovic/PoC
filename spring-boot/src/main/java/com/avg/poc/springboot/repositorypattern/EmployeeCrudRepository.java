@@ -1,4 +1,4 @@
-package com.avg.poc.springboot;
+package com.avg.poc.springboot.repositorypattern;
 
 import org.springframework.data.repository.CrudRepository;
 

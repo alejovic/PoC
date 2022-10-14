@@ -1,5 +1,7 @@
 package com.avg.poc.springboot;
 
+import com.avg.poc.springboot.repositorypattern.EmployeeCrudRepository;
+import com.avg.poc.springboot.repositorypattern.EmployeeEMRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

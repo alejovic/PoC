@@ -3,5 +3,5 @@ logging:
     name: spring-boot-poc.log
 spring:
   profiles:
-    active: prod
+    active: dev
 
