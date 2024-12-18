@@ -37,12 +37,12 @@ public class JDBCConfig {
 //        <property name="password" value="password"/>
 //    </bean>
 
-    @Bean(name = "h2EmbeddedDataSource")
-    public DataSource getEmbeddedDataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("classpath:db/h2/schema.sql")
-                .addScript("classpath:db/h2/data.sql").build();
-    }
+//    @Bean(name = "h2EmbeddedDataSource")
+//    public DataSource getEmbeddedDataSource() {
+//        return new EmbeddedDatabaseBuilder()
+//                .setType(EmbeddedDatabaseType.H2)
+//                .addScript("classpath:db/h2/schema.sql")
+//                .addScript("classpath:db/h2/data.sql").build();
+//    }
 
 }

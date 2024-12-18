@@ -15,6 +15,8 @@ public class EmployeeJDBCTemplateTest {
 
     @Test
     void jdbctemplate_listAllEmployees() {
+        System.out.println(employeeDAO.dataSource.toString());
+        System.out.println(employeeDAO.jdbcTemplate.getDataSource().toString());
         employeeDAO.getAll().stream().forEach(System.out::println);
     }
 

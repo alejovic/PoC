@@ -78,18 +78,20 @@
                 <version>0.40.2</version>
                 <configuration>
                     <verbose>true</verbose>
-                    <image>
-                        <name>spring-boot</name>
-                        <build>
-                            <assembly>
-                                <descriptionRef>artifact</descriptionRef>
-                            </assembly>
-                            <dockerFile>Dockerfile</dockerFile>
-                            <tags>
-                                <tag>latest</tag>
-                            </tags>
-                        </build>
-                    </image>
+                    <images>
+                        <image>
+                            <name>spring-boot</name>
+                            <build>
+                                <assembly>
+                                    <descriptionRef>artifact</descriptionRef>
+                                </assembly>
+                                <dockerFile>Dockerfile</dockerFile>
+                                <tags>
+                                    <tag>latest</tag>
+                                </tags>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
             <!-- -->
@@ -99,7 +101,7 @@
                 <version>4.17.0</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-<!--                    <propertyFile>src/main/resources/application.properties</propertyFile>-->
+                    <!--                    <propertyFile>src/main/resources/application.properties</propertyFile>-->
                     <propertyFileWillOverride>true</propertyFileWillOverride>
                 </configuration>
             </plugin>

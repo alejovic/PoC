@@ -30,6 +30,7 @@ public class JDBCTemplateConfig {
         driverManagerDataSource.setUsername(environment.getProperty(USER));
         driverManagerDataSource.setPassword(environment.getProperty(PASSWORD));
         driverManagerDataSource.setDriverClassName(environment.getProperty(DRIVER));
+        //driverManagerDataSource.setSchema("public");
         return driverManagerDataSource;
     }
 

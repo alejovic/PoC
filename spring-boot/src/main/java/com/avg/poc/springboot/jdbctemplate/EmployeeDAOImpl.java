@@ -1,6 +1,7 @@
 package com.avg.poc.springboot.jdbctemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +20,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private static final String SQL_GET_ALL = "select id, name, role from " + TABLE;
 
     @Autowired
+    @Qualifier("h2JDBCTemplateDataSource")
     DataSource dataSource;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-//    @Autowired
-//    public EmployeeDAOImpl(DataSource dataSource) {
-//        jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
+    @Autowired
+    public EmployeeDAOImpl(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public boolean save(Employee employee) {
