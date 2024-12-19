@@ -24,9 +24,11 @@ public class OptimalPathInTree {
         Optional<List<Integer>> rightPath = findOptimalPath(root.right);
         List<Integer> optimalPath = new ArrayList<>();
         optimalPath.add(root.val);
+
         if (!leftPath.isPresent() && !rightPath.isPresent()) {
             return Optional.of(optimalPath);
         }
+
         List<Integer> longerPath = leftPath.orElse(new ArrayList<>());
         if (rightPath.isPresent() && rightPath.get().size() > longerPath.size()) {
             longerPath = rightPath.get();
