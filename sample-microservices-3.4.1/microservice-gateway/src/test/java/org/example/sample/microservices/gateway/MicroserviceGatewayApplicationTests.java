@@ -1,4 +1,4 @@
-package org.example.sample.microservices.microservice_gateway;
+package org.example.sample.microservices.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

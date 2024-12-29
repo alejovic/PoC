@@ -1,13 +1,13 @@
-package org.example.sample.microservices.microservice_eureka;
+package org.example.sample.microservices.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroserviceEurekaApplication {
+public class MicroserviceGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceEurekaApplication.class, args);
+		SpringApplication.run(MicroserviceGatewayApplication.class, args);
 	}
 
 }
