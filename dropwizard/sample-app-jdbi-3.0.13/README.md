@@ -58,7 +58,7 @@ Dropwizard 3.x introduces Java 17+ support, and you may see several changes in c
 
 ---
 
-# ⚡ Limitations / Drawbacks of **Dropwizard 2.1.11**
+# ⚡ Limitations / Drawbacks of **Dropwizard 3.0.13**
 
 1. **No Full-fledged IoC Container**  
    Dropwizard 3.x does not include a full-fledged **Inversion of Control (IoC)** container like Spring’s **Spring Beans**. It provides basic DI through Jersey but lacks advanced features like AOP (Aspect-Oriented Programming), scopes, and lifecycle management.
