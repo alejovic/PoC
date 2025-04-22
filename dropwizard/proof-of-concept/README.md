@@ -24,3 +24,15 @@ Health Check
 ---
 
 To see your applications health enter url `http://localhost:8081/healthcheck`
+
+---
+
+# 📈 Dropwizard Versions vs Java Versions
+
+| Dropwizard Version | Java Version Supported | Notes |
+|:-------------------|:------------------------|:------|
+| **2.x** | Java 8, Java 11 | Officially targeted Java 8; Java 11 worked too |
+| **3.x** | Java 11+ | Requires Java 11 minimum |
+| **4.x (latest, dev)** | Java 17+ | Targets Java 17 officially |
+
+
