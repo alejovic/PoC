@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="02" author="alejovic">
+        <comment>Inserting employees</comment>
+        <insert tableName="employees">
+            <column name="id" valueNumeric="01"/>
+            <column name="name" value="liquibase_employee_01"/>
+            <column name="role" value="BC"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueNumeric="02"/>
+            <column name="name" value="liquibase_employee_02"/>
+            <column name="role" value="BC"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueNumeric="03"/>
+            <column name="name" value="liquibase_employee_03"/>
+            <column name="role" value="BC"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueNumeric="04"/>
+            <column name="name" value="liquibase_employee_04"/>
+            <column name="role" value="BC"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" valueNumeric="05"/>
+            <column name="name" value="liquibase_employee_05"/>
+            <column name="role" value="BC"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

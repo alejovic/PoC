@@ -1,0 +1,2 @@
+logging.file.name=spring-boot-poc.log
+spring.profiles.active=prod

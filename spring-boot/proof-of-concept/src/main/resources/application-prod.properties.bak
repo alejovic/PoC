@@ -1,0 +1,14 @@
+spring.datasource.url=jdbc:h2:file:./data/myPROD_DB
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.hibernate.ddl-auto=update
+
+spring-boot-poc.property1=single_property1_PROD
+spring-boot-poc.property2=single_property2_PROD
+spring-boot-poc.properties[0].property1=array-property-0-property1_PROD
+spring-boot-poc.properties[0].property2=array-property-0-property2_PROD
+spring-boot-poc.properties[1].property1=array-property-1-property1_PROD
+spring-boot-poc.properties[1].property2=array-property-1-property2_PROD
+
+spring-boot-poc.list.properties=prod1;prod2;prod3
