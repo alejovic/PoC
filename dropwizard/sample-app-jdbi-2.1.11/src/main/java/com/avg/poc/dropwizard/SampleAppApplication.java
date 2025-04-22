@@ -1,6 +1,6 @@
 package com.avg.poc.dropwizard;
 
-import com.avg.poc.dropwizard.api.PersonResource;
+import com.avg.poc.dropwizard.resources.PersonResource;
 import com.avg.poc.dropwizard.db.PersonDAO;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi3.JdbiFactory;

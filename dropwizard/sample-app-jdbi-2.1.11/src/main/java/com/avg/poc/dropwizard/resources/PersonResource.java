@@ -1,4 +1,4 @@
-package com.avg.poc.dropwizard.api;
+package com.avg.poc.dropwizard.resources;
 
 import com.avg.poc.dropwizard.db.Person;
 import com.avg.poc.dropwizard.db.PersonDAO;
