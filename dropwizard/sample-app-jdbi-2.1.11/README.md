@@ -91,7 +91,7 @@ How to start the dropwizard application
 ```shell
 curl -X POST http://localhost:8080/persons \
      -H "Content-Type: application/json" \
-     -d '{"name":"John Doe","email":"john@example.com"}'
+     -d '{"id":1, "name":"John Doe","email":"john@example.com"}'
      
 curl http://localhost:8080/persons/1
 

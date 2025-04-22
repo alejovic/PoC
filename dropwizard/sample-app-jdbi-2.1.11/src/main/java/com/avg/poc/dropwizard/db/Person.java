@@ -4,8 +4,11 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 public class Person {
 
+    @ColumnName("id")
     private int id;
+    @ColumnName("name")
     private String name;
+    @ColumnName("email")
     private String email;
 
     public Person() {}
@@ -16,18 +19,27 @@ public class Person {
         this.email = email;
     }
 
-    @ColumnName("id")
     public int getId() {
         return id;
     }
 
-    @ColumnName("name")
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    @ColumnName("email")
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
