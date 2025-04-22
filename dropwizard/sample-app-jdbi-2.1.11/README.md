@@ -85,7 +85,7 @@ How to start the dropwizard application
 ---
 
 1. Run `mvn clean install` to build your application
-2. Start application with `java -jar target/sample-app-2.1.11-1.0-SNAPSHOT.jar server config.yml`
+2. Start application with `java -jar target/sample-app-jdbi-2.1.11-1.0-SNAPSHOT.jar server config.yml`
 3. To check that your application is running enter url `http://localhost:8080`
 4. To test the API, you can use a tool like `curl` or Postman. For example, to create a new person, you can use the following `curl` command:
 ```shell
