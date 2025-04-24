@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>#{productBean.newProduct.id == null ? 'Add Product' : 'Edit Product'}</title>
+    <h:outputStylesheet name="css/styles.css"/>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h1>#{productBean.newProduct.id == null ? 'Add Product' : 'Edit Product'}</h1>
+
+        <h:form>
+            <h:messages globalOnly="true" styleClass="messages"/>
+
+            <div class="form-group">
+                <h:outputLabel for="name">Name:</h:outputLabel>
+                <h:inputText id="name" value="#{productBean.newProduct.name}"
+                             required="true" requiredMessage="Name is required" styleClass="form-control"/>
+                <h:message for="name" styleClass="error-message"/>
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="description">Description:</h:outputLabel>
+                <h:inputTextarea id="description" value="#{productBean.newProduct.description}"
+                                 styleClass="form-control"/>
+                <h:message for="description" styleClass="error-message"/>
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="price">Price:</h:outputLabel>
+                <h:inputText id="price" value="#{productBean.newProduct.price}"
+                             required="true" requiredMessage="Price is required" styleClass="form-control">
+                    <f:convertNumber/>
+                </h:inputText>
+                <h:message for="price" styleClass="error-message"/>
+            </div>
+
+            <div class="action-buttons">
+                <h:commandButton value="Save" action="#{productBean.saveProduct}" styleClass="btn btn-primary"/>
+                <h:button value="Cancel" outcome="product-list" styleClass="btn"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+
+</html>

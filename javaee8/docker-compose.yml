@@ -1,0 +1,40 @@
+---
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./payara.Dockerfile
+    ports:
+      - "8080:8080"
+      - "4848:4848"  # Admin console
+    environment:
+      - ADMIN_PASSWORD=admin  # Default password for admin console
+    volumes:
+      - payara_data:/opt/payara/appserver/glassfish/domains/domain1/autodeploy
+    networks:
+      - javaee_network
+    # Uncomment and modify if you need a database
+    # depends_on:
+    #   - db
+
+  # Uncomment if you need a PostgreSQL database
+  # db:
+  #   image: postgres:13
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=productdb
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - javaee_network
+
+networks:
+  javaee_network:
+    driver: bridge
+
+volumes:
+  payara_data:
+  # postgres_data:
