@@ -1,0 +1,10 @@
+target/*
+!target/javaee9-demo.war
+.git
+.settings
+.classpath
+.project
+README.md
+*.iml
+.idea/
+.vscode/

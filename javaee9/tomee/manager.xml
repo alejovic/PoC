@@ -1,0 +1,8 @@
+<!-- File: conf/Catalina/localhost/manager.xml -->
+<Context privileged="true" antiResourceLocking="false" docBase="${catalina.home}/webapps/manager">
+    <!-- Remove or comment out this block -->
+    <!--
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+           allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"/>
+    -->
+</Context>

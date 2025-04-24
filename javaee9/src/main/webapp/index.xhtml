@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <title>Java EE 9 Product Management</title>
+    <h:outputStylesheet name="css/styles.css"/>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h1>Welcome to Product Management</h1>
+        <p>This is a Java EE 9 (Jakarta) application with JSF, EJB, and REST.</p>
+
+        <h:form>
+            <h:commandButton value="View Products" action="product-list?faces-redirect=true" styleClass="btn"/>
+        </h:form>
+    </div>
+</h:body>
+
+</html>
