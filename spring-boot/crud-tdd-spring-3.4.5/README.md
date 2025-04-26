@@ -32,5 +32,15 @@ Use Case:
 * Spring Boot Test (comes by default)
 
 ### ✅ Step 2: Define Domain Tests (TDD First)
+com/avg/demo/crud/model/OrderTest.java
+com/avg/demo/crud/model/ProductTest.java
 
 ### ✅ Step 3: Make Domain Tests Pass
+com/avg/demo/crud/model/Order.java
+com/avg/demo/crud/model/Product.java
+
+### ✅ Step 4: Write Repository Tests
+- @DataJpaTest: annotation is used to test JPA repositories in Spring Boot applications. It’s a specialized test annotation that provides a minimal Spring context for testing the persistence layer. This annotation can be used in conjunction with other testing annotations like @RunWith and @SpringBootTest.
+
+1. com/avg/demo/crud/repository/ProductRepositoryTest.java
+2. com/avg/demo/crud/repository/OrderRepositoryTest.java
