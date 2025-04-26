@@ -44,3 +44,12 @@ com/avg/demo/crud/model/Product.java
 
 1. com/avg/demo/crud/repository/ProductRepositoryTest.java
 2. com/avg/demo/crud/repository/OrderRepositoryTest.java
+
+### ✅ Step 5: Repositories
+```java
+// It's because ORDER is a reserved SQL keyword (in ORDER BY, etc).
+@Table(name = "orders")
+public class Order { . . . }
+```
+1. com/avg/demo/crud/repository/ProductRepository.java
+2. com/avg/demo/crud/repository/OrderRepository.java

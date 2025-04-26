@@ -19,8 +19,8 @@ class OrderRepositoryTest {
     OrderRepository orderRepository;
 
     @Test
-    public void testSaveOrder() {
-        Product product = new Product(null, "ProductTestName", 99.99);
+    void testSaveOrder() {
+        Product product = productRepository.save(new Product(null, "ProductTestName", 99.99));
         Order order = new Order(null, "ABC-123", List.of(product));
         Order savedOrder = orderRepository.save(order);
         Assertions.assertThat(savedOrder.getId()).isNotNull();
