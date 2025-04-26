@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ class ProductRepositoryTest {
     ProductRepository productRepository;
 
     @Test
-    void testSaveProduct(){
+    void testSaveProduct() {
         Product product = new Product(null, "ProductTestName", 99.99);
         Product savedProduct = productRepository.save(product);
         Assertions.assertThat(savedProduct.getId()).isNotNull();

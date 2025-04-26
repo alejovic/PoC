@@ -2,6 +2,8 @@ package com.avg.demo.crud.controller;
 
 import com.avg.demo.crud.model.Product;
 import com.avg.demo.crud.service.ProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,13 @@ class ProductControllerTest {
     @MockBean
     ProductService productService;
 
+    ObjectMapper om;
+
+    @BeforeEach
+    void setUp() {
+        om = new ObjectMapper();
+    }
+
     @Test
     void testGetProductById() throws Exception {
         Product product = new Product(1L, "ProductTestName", 99.99);
@@ -29,5 +38,41 @@ class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("ProductTestName"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(99.99));
+    }
+
+    @Test
+    void testCreateProduct() throws Exception {
+        Product product = new Product(1L, "ProductTestName", 99.99);
+        Mockito.when(productService.createProduct(Mockito.any(Product.class))).thenReturn(product);
+        String requestBody = om.writeValueAsString(product);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/products")
+                        .contentType("application/json")
+                        .content(requestBody)
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"));
+    }
+
+    @Test
+    void testUpdateProduct() throws Exception {
+        Product product = new Product(1L, "ProductTestName", 99.99);
+        Product updatedProduct = new Product(1L, "Changed", 99.99);
+        Mockito.when(productService.updateProduct(Mockito.anyLong(), Mockito.any(Product.class))).thenReturn(updatedProduct);
+
+        String requestBody = om.writeValueAsString(product);
+        mockMvc.perform(MockMvcRequestBuilders.put("/products/1")
+                        .contentType("application/json")
+                        .content(requestBody))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Changed"));
+    }
+
+    @Test
+    void testDeleteProduct() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/products/1")
+                        .contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
     }
 }
