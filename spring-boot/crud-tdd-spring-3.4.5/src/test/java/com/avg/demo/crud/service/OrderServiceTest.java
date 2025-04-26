@@ -5,17 +5,22 @@ import com.avg.demo.crud.model.Product;
 import com.avg.demo.crud.repository.OrderRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 
+@ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
 
     @Mock
     OrderRepository orderRepository;
 
+    @InjectMocks
     OrderService orderService;
 
     @Test

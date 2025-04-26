@@ -57,3 +57,14 @@ public class Order { . . . }
 ### ✅ Step 6: Write Service Tests
 1. com/avg/demo/crud/service/ProductServiceTest.java
 2. com/avg/demo/crud/service/OrderServiceTest.java
+
+### ✅ Step 7: Implement Services
+```java
+@ExtendWith(MockitoExtension.class) 
+// It tells JUnit 5 (the test runner) to use the MockitoExtension, which enables Mockito's features like automatic mock initialization.
+
+@InjectMocks 
+// It creates an instance of the class you want to test, and injects mocks (created by @Mock) into it automatically.
+```
+1. com/avg/demo/crud/service/ProductService.java
+2. com/avg/demo/crud/service/OrderService.java
