@@ -106,3 +106,39 @@ mockMvc.perform(MockMvcRequestBuilders.get("/orders/1"))
 Repeat TDD and add more operations.
 
 ### Step 11: Final Test
+
+#### Product API
+```shell
+curl http://localhost:8080/v1/products/1
+
+curl -X POST http://localhost:8080/v1/products \
+  -H "Content-Type: application/json" \
+  -d '{"name":"New Laptop", "price": 5}'
+  
+curl -X PUT http://localhost:8080/v1/products/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"New Laptop", "price": 99}'  
+```
+#### Order API
+```shell
+curl http://localhost:8080/v1/orders/1
+
+curl -X POST http://localhost:8080/v1/orders \
+  -H "Content-Type: application/json" \
+  -d '{
+  "orderNo" : "ABC-123",
+  "products" : [ 
+      { "id" : 1 }
+   ]
+}'
+  
+curl -X PUT http://localhost:8080/v1/orders/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+  "orderNo" : "XYZ-999",
+  "products" : [ 
+      { "id" : 1 },
+      { "id" : 2 }
+   ]
+}'
+```
