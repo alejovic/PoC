@@ -68,3 +68,35 @@ public class Order { . . . }
 ```
 1. com/avg/demo/crud/service/ProductService.java
 2. com/avg/demo/crud/service/OrderService.java
+
+
+### ✅ Step 8: Create Controller Tests (SpringBootTest or MockMvc)
+
+| Feature | @SpringBootTest | MockMvc (with @WebMvcTest) |
+|:---|:---|:---|
+| **Scope** | Loads the **entire Spring Boot application context** | Loads **only the web (MVC) layer**, like controllers |
+| **Speed** | **Slower** (starts everything: database, services, security, etc.) | **Faster** (only web stuff is started) |
+| **When to use** | For **full integration tests** (e.g., check real DB, services, security) | For **unit tests or slice tests** focused on **controllers** |
+| **Mocking needed?** | Usually **less mocking** — real beans are available | **Must mock** service layers and dependencies manually |
+| **Testing real behavior** | Yes — tests real interactions between all layers | No — tests the controller in **isolation** |
+| **Example usage** | Testing a full API workflow (controller → service → repository → DB) | Testing a controller endpoint returns correct HTTP status, body, etc. |
+
+```java
+@WebMvcTest
+// It tells Spring Boot to start only the web layer — specifically the Spring MVC components like controllers, filters, etc
+. . .
+@Autowired
+MockMvc mockMvc;
+. . .
+mockMvc.perform(MockMvcRequestBuilders.get("/orders/1"))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(MockMvcResultMatchers.jsonPath("$.orderNo").value("ABC-123"))
+        .andExpect(MockMvcResultMatchers.jsonPath("$.products[0].name").value("ProductTestName"));
+
+```
+1. com/avg/demo/crud/controller/ProductControllerTest.java
+2. com/avg/demo/crud/controller/OrderControllerTest.java
+
+
+
+
