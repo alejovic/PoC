@@ -53,3 +53,7 @@ public class Order { . . . }
 ```
 1. com/avg/demo/crud/repository/ProductRepository.java
 2. com/avg/demo/crud/repository/OrderRepository.java
+
+### ✅ Step 6: Write Service Tests
+1. com/avg/demo/crud/service/ProductServiceTest.java
+2. com/avg/demo/crud/service/OrderServiceTest.java
