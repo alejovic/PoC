@@ -1,5 +1,8 @@
 package com.avg.demo.crud.service;
 
+import com.avg.demo.crud.dto.CreateProductDTO;
+import com.avg.demo.crud.dto.ProductDTO;
+import com.avg.demo.crud.dto.UpdateProductDTO;
 import com.avg.demo.crud.model.Product;
 import com.avg.demo.crud.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
@@ -26,17 +29,18 @@ class ProductServiceTest {
         Product product = new Product(1L, "ProductTestName", 99.99);
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
-        Product foundProduct = productService.findById(1L);
-        Assertions.assertThat(foundProduct.getName()).isEqualTo("ProductTestName");
+        ProductDTO foundProduct = productService.findById(1L);
+        Assertions.assertThat(foundProduct.name()).isEqualTo("ProductTestName");
     }
 
     @Test
     void testCreateProduct() {
-        Product product = new Product(1L, "ProductTestName", 99.99);
-        Mockito.when(productRepository.save(product)).thenReturn(product);
+        CreateProductDTO createDTO = new CreateProductDTO("ProductTestName", 99.99);
+        Mockito.when(productRepository.save(Mockito.any(Product.class)))
+                .thenReturn(new Product(1L, "ProductTestName", 99.99));
 
-        Product savedProduct = productService.createProduct(product);
-        Assertions.assertThat(savedProduct.getName()).isEqualTo("ProductTestName");
+        ProductDTO savedProduct = productService.createProduct(createDTO);
+        Assertions.assertThat(savedProduct.name()).isEqualTo("ProductTestName");
     }
 
     @Test
@@ -44,10 +48,10 @@ class ProductServiceTest {
         Product product = new Product(1L, "ProductTestName", 99.99);
         Mockito.when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
-        Product savedProduct = new Product(1L, "newName", 99.99);
-        Mockito.when(productRepository.save(Mockito.any(Product.class))).thenReturn(savedProduct);
-        Product updatedProduct = productService.updateProduct(1L, savedProduct);
-        Assertions.assertThat(updatedProduct.getName()).isEqualTo("newName");
+        UpdateProductDTO savedProduct = new UpdateProductDTO("newName", 99.99);
+        Mockito.when(productRepository.save(Mockito.any(Product.class))).thenReturn(new Product(1L, "newName", 99.99));
+        ProductDTO updatedProduct = productService.updateProduct(1L, savedProduct);
+        Assertions.assertThat(updatedProduct.name()).isEqualTo("newName");
 
     }
 

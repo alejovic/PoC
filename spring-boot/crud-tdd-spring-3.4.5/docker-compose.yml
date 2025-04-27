@@ -1,1 +1,7 @@
 services:
+  redis:
+    image: 'redis:7.0'
+    ports:
+      - '6379'
+    labels:
+      org.springframework.boot.readiness-check.tcp.disable: true

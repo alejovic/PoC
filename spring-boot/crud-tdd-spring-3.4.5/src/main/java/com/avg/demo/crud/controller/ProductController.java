@@ -1,7 +1,11 @@
 package com.avg.demo.crud.controller;
 
+import com.avg.demo.crud.dto.CreateProductDTO;
+import com.avg.demo.crud.dto.ProductDTO;
+import com.avg.demo.crud.dto.UpdateProductDTO;
 import com.avg.demo.crud.model.Product;
 import com.avg.demo.crud.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,18 +19,21 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProduct(@PathVariable Long id) {
-        return productService.findById(id);
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
+        ProductDTO dto = productService.findById(id);
+        return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody CreateProductDTO createDTO) {
+        ProductDTO dto = productService.createProduct(createDTO);
+        return ResponseEntity.ok().body(dto);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        return productService.updateProduct(id, product);
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody UpdateProductDTO updateDTO) {
+        ProductDTO dto = productService.updateProduct(id, updateDTO);
+        return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping("/{id}")

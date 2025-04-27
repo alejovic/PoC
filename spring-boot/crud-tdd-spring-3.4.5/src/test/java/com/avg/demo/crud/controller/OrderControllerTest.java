@@ -1,5 +1,9 @@
 package com.avg.demo.crud.controller;
 
+import com.avg.demo.crud.dto.CreateOrderDTO;
+import com.avg.demo.crud.dto.OrderDTO;
+import com.avg.demo.crud.dto.ProductDTO;
+import com.avg.demo.crud.dto.UpdateOrderDTO;
 import com.avg.demo.crud.model.Order;
 import com.avg.demo.crud.model.Product;
 import com.avg.demo.crud.service.OrderService;
@@ -34,22 +38,22 @@ class OrderControllerTest {
 
     @Test
     void testGetOrderById() throws Exception {
-        Product product = new Product(1L, "ProductTestName", 99.99);
-        Order order = new Order(1L, "ABC-123", List.of(product));
+        ProductDTO product = new ProductDTO(1L, "ProductTestName", 99.99);
+        OrderDTO order = new OrderDTO(1L, "ABC-123", List.of(product));
 
         Mockito.when(orderService.findById(1L)).thenReturn(order);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/orders/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.orderNo").value("ABC-123"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("ABC-123"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.products[0].name").value("ProductTestName"));
     }
 
     @Test
     void testCreateOrder() throws Exception {
-        Product product = new Product(1L, "ProductTestName", 99.99);
-        Order order = new Order(1L, "ABC-123", List.of(product));
-        Mockito.when(orderService.createOrder(Mockito.any(Order.class))).thenReturn(order);
+        ProductDTO product = new ProductDTO(1L, "ProductTestName", 99.99);
+        OrderDTO order = new OrderDTO(1L, "ABC-123", List.of(product));
+        Mockito.when(orderService.createOrder(Mockito.any(CreateOrderDTO.class))).thenReturn(order);
 
         String requestBody = om.writeValueAsString(order);
 
@@ -57,20 +61,20 @@ class OrderControllerTest {
                         .contentType("application/json")
                         .content(requestBody))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.orderNo").value("ABC-123"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("ABC-123"));
     }
 
     @Test
     void testUpdateOrder() throws Exception {
-        Product product = new Product(1L, "ProductTestName", 99.99);
-        Order order = new Order(1L, "XYZ-333", List.of(product));
-        Mockito.when(orderService.updateOrder(Mockito.anyLong(), Mockito.any(Order.class))).thenReturn(order);
+        ProductDTO product = new ProductDTO(1L, "ProductTestName", 99.99);
+        OrderDTO order = new OrderDTO(1L, "XYZ-333", List.of(product));
+        Mockito.when(orderService.updateOrder(Mockito.anyLong(), Mockito.any(UpdateOrderDTO.class))).thenReturn(order);
 
         String requestBody = om.writeValueAsString(order);
         mockMvc.perform(MockMvcRequestBuilders.put("/orders/1")
                         .contentType("application/json")
                         .content(requestBody))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.orderNo").value("XYZ-333"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("XYZ-333"));
     }
 }

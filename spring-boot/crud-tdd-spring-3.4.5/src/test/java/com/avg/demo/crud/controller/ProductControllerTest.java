@@ -1,5 +1,8 @@
 package com.avg.demo.crud.controller;
 
+import com.avg.demo.crud.dto.CreateProductDTO;
+import com.avg.demo.crud.dto.ProductDTO;
+import com.avg.demo.crud.dto.UpdateProductDTO;
 import com.avg.demo.crud.model.Product;
 import com.avg.demo.crud.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +34,7 @@ class ProductControllerTest {
 
     @Test
     void testGetProductById() throws Exception {
-        Product product = new Product(1L, "ProductTestName", 99.99);
+        ProductDTO product = new ProductDTO(1L, "ProductTestName", 99.99);
         Mockito.when(productService.findById(Mockito.anyLong())).thenReturn(product);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/products/1"))
@@ -42,9 +45,9 @@ class ProductControllerTest {
 
     @Test
     void testCreateProduct() throws Exception {
-        Product product = new Product(1L, "ProductTestName", 99.99);
-        Mockito.when(productService.createProduct(Mockito.any(Product.class))).thenReturn(product);
-        String requestBody = om.writeValueAsString(product);
+        ProductDTO createDTO = new ProductDTO(1L, "ProductTestName", 99.99);
+        Mockito.when(productService.createProduct(Mockito.any(CreateProductDTO.class))).thenReturn(createDTO);
+        String requestBody = om.writeValueAsString(createDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products")
                         .contentType("application/json")
@@ -57,8 +60,8 @@ class ProductControllerTest {
     @Test
     void testUpdateProduct() throws Exception {
         Product product = new Product(1L, "ProductTestName", 99.99);
-        Product updatedProduct = new Product(1L, "Changed", 99.99);
-        Mockito.when(productService.updateProduct(Mockito.anyLong(), Mockito.any(Product.class))).thenReturn(updatedProduct);
+        ProductDTO updatedProduct = new ProductDTO(1L, "Changed", 99.99);
+        Mockito.when(productService.updateProduct(Mockito.anyLong(), Mockito.any(UpdateProductDTO.class))).thenReturn(updatedProduct);
 
         String requestBody = om.writeValueAsString(product);
         mockMvc.perform(MockMvcRequestBuilders.put("/products/1")
