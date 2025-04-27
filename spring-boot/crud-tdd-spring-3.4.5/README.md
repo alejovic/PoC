@@ -127,18 +127,49 @@ curl -X POST http://localhost:8080/v1/orders \
   -H "Content-Type: application/json" \
   -d '{
   "orderNo" : "ABC-123",
-  "products" : [ 
-      { "id" : 1 }
-   ]
+  "productIds" : [ 1 ]
 }'
   
 curl -X PUT http://localhost:8080/v1/orders/1 \
   -H "Content-Type: application/json" \
   -d '{
   "orderNo" : "XYZ-999",
-  "products" : [ 
-      { "id" : 1 },
-      { "id" : 2 }
-   ]
+  "productIds" : [ 1, 2 ]
 }'
 ```
+### Step 12: DTOs (Data Transfer Objects)
+
+DTOs are simple Java objects that transfer data between layers in an application, such as between a DAO (Data Access Object) and a controller or service. They typically contain no business logic and only fields with getters and setters.
+
+Why Use DTOs?
+
+* Separation of Concerns: DTOs separate the internal data structure of the database or entity from the representation used in APIs or UI layers.
+* Security: Prevents exposing sensitive fields from entities.
+* Performance: Customizing the data returned (e.g., only required fields) reduces the payload size.
+* Flexibility: Facilitates API versioning and different representations for the same entity.
+
+### Step 13: Projections
+
+✅ What is a Projection?
+
+In Spring Data JPA, a projection lets you select only parts of an entity. You can use:
+
+* Interfaces (closed projections)
+* DTOs/Records (open projections with JPQL or native queries)
+
+```shell
+curl http://localhost:8080/v1/orders/summary
+```
+
+Why Use Projections?
+
+* Performance: Avoids fetching unnecessary fields, reducing memory usage and improving query performance.
+* Convenience: Can directly fetch data in the required format, bypassing additional mapping logic.
+
+---
+| Aspect        | DTO (Data Transfer Object)                                     | Projections                                         | Mappers                                           |
+|---------------|-----------------------------------------------------------------|-----------------------------------------------------|---------------------------------------------------|
+| **Definition** | An object that carries data between processes                  | A subset of fields selected from a database query   | A mechanism to transform data between objects     |
+| **Pros**       | - Encapsulates data<br>- Decouples layers<br>- Validation friendly | - Reduces amount of data transferred<br>- Faster queries<br>- Lightweight objects | - Centralized transformation logic<br>- Reusable<br>- Helps maintain separation of concerns |
+| **Cons**       | - Needs manual maintenance<br>- Risk of duplication<br>- Extra code | - Limited logic<br>- May tightly couple to DB schema | - Extra layer to maintain<br>- Potential performance cost if complex |
+| **Use Case**   | - API responses<br>- Transfer between services<br>- Domain isolation | - Read-only views<br>- Fetching only necessary fields<br>- Reporting | - Mapping entities to DTOs and vice versa<br>- Transformation during persistence or retrieval |

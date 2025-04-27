@@ -4,9 +4,12 @@ import com.avg.demo.crud.dto.CreateOrderDTO;
 import com.avg.demo.crud.dto.OrderDTO;
 import com.avg.demo.crud.dto.UpdateOrderDTO;
 import com.avg.demo.crud.model.Order;
+import com.avg.demo.crud.projections.OrderProductView;
 import com.avg.demo.crud.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
@@ -35,4 +38,10 @@ public class OrderController {
         OrderDTO dto =  orderService.updateOrder(id, updateDTO);
         return ResponseEntity.ok().body(dto);
     }
+
+    @GetMapping("/summary")
+    public List<OrderProductView> orderSummaries() {
+        return orderService.getOrdersWithProductNames();
+    }
+
 }

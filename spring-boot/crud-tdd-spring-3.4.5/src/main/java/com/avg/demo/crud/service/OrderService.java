@@ -6,10 +6,13 @@ import com.avg.demo.crud.dto.ProductDTO;
 import com.avg.demo.crud.dto.UpdateOrderDTO;
 import com.avg.demo.crud.model.Order;
 import com.avg.demo.crud.model.Product;
+import com.avg.demo.crud.projections.OrderProductFlatProjection;
+import com.avg.demo.crud.projections.OrderProductView;
 import com.avg.demo.crud.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -58,5 +61,16 @@ public class OrderService {
         Order existingOrder = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
         repository.delete(existingOrder);
+    }
+
+    public List<OrderProductView> getOrdersWithProductNames() {
+        List<OrderProductFlatProjection> flat = repository.fetchOrderWithProductNames();
+
+        return flat.stream()
+                .collect(Collectors.groupingBy(OrderProductFlatProjection::getOrderId,
+                        Collectors.mapping(OrderProductFlatProjection::getProductName, Collectors.toList())))
+                .entrySet().stream()
+                .map(e -> new OrderProductView(e.getKey(), e.getValue()))
+                .toList();
     }
 }
