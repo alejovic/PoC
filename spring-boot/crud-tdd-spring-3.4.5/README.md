@@ -196,3 +196,20 @@ spring.cache.type=redis
 spring.data.redis.host=localhost
 spring.data.redis.port=6379
 ```
+
+### Step 15: HATEOAS
+
+HATEOAS is a principle of REST architecture that suggests the client should interact with the server by following hyperlinks provided within the responses. These hyperlinks describe the available operations (or actions) the client can perform next.
+
+**Why HATEOAS?**
+* Makes APIs discoverable.
+* Clients don’t need to "know" URLs — follow links.
+* Easier future-proofing — you can move/change URLs without breaking clients.
+* Level 3 REST maturity model (the best).
+
+#### Steps
+
+1. Add `spring-boot-starter-hateoas` dependency
+2. Return `EntityModel<>` and `CollectionModel<>` in controllers
+3. Add `linkTo(methodOn(...))` to create dynamic links
+4. Test the API to see _`links` in JSON responses
