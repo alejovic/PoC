@@ -173,3 +173,26 @@ Why Use Projections?
 | **Pros**       | - Encapsulates data<br>- Decouples layers<br>- Validation friendly | - Reduces amount of data transferred<br>- Faster queries<br>- Lightweight objects | - Centralized transformation logic<br>- Reusable<br>- Helps maintain separation of concerns |
 | **Cons**       | - Needs manual maintenance<br>- Risk of duplication<br>- Extra code | - Limited logic<br>- May tightly couple to DB schema | - Extra layer to maintain<br>- Potential performance cost if complex |
 | **Use Case**   | - API responses<br>- Transfer between services<br>- Domain isolation | - Read-only views<br>- Fetching only necessary fields<br>- Reporting | - Mapping entities to DTOs and vice versa<br>- Transformation during persistence or retrieval |
+
+### Step 14: Cache
+
+Spring Boot already supports it internally, but optionally you can add dependencies if you want fancy cache backends like Ehcache or Caffeine.
+
+For basic memory caching, no extra dependency is needed.
+
+#### Steps
+1. @EnableCaching | In main app class
+2. @Cacheable("cacheName") | On service read methods
+3. @CacheEvict(value = "cacheName", allEntries = true) | On service write methods
+
+**Redis:** 
+* Add Redis starter `spring-boot-starter-data-redis`
+* Add Docker starter `spring-boot-docker-compose`
+* Use JSON Serializer `RedisConfig` vs `implements Serializable`
+```properties
+# Redis configuration
+spring.cache.type=redis
+
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+```
