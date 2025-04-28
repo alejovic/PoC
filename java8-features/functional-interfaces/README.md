@@ -114,3 +114,9 @@ Stream
       └── reduce
 ```
 
+Where Do Functional Interfaces Shine?
+---
+* Streams (filter, map, forEach)
+* Collections (removeIf, forEach, replaceAll)
+* Concurrency APIs (ExecutorService, CompletableFuture)
+* Event handling (in GUIs, listeners)
